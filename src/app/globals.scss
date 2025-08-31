@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap');
+
+:root {
+  --main-background-color: #150104;
+  --background-color: #220101;
+  --border-color: #D80111;
+  --shadow-color: rgba(219, 41, 56, 0.25);
+}
+
+::selection{
+  background: var(--border-color);
+}
+
+*{
+  box-sizing: border-box;
+  text-shadow: 0 0 10px #e8e8e8;
+  padding: 0;
+}
+
+h2 {
+  font-size: 20px;
+}
+
+body {
+  background-color: var(--main-background-color);
+  background-image: url("../assets/LineGRID.svg");
+  background-repeat: repeat;
+  background-size: contain;
+  background-position: top;
+  color: #ffffff;
+  font-family: "Orbitron", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  padding: 24px 96px;
+}
+
