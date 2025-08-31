@@ -30,6 +30,6 @@ export const queueTypes = {
 };
 
 export const twitchParents = {
-    emeraldChallenge: "https://emeraldchallenge.vercel.app/",
+    emeraldChallenge: "emeraldchallenge.vercel.app",
     localhost: "localhost"
 }
