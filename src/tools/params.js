@@ -28,3 +28,8 @@ export const queueTypes = {
     430: "Normal Blind",
     450: "ARAM",
 };
+
+export const twitchParents = {
+    emeraldChallenge: "https://emeraldchallenge.vercel.app/",
+    localhost: "localhost"
+}

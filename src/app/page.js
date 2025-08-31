@@ -1,7 +1,7 @@
 "use client";
 
 import {useEffect, useState} from "react";
-import {cardTitles, PUUID} from "@/tools/params";
+import {cardTitles, PUUID, twitchParents} from "@/tools/params";
 import {getFlexMatches, getLolRank, getSoloMatches, getTotalLP, getWinrate} from "@/tools/functions";
 import styles from './page.module.scss';
 import Image from "next/image";
@@ -60,7 +60,7 @@ export default function Home() {
 
             <div className={styles.twitchSection}>
                 <iframe
-                    src="https://player.twitch.tv/?channel=akgamiiTV&parent=localhost"
+                    src={`https://player.twitch.tv/?channel=akgamiiTV&parent=${twitchParents.emeraldChallenge}`}
                     allowFullScreen={true}
                 />
                 <div className={styles.headerContainer}>
