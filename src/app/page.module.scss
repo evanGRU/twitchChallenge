@@ -1,75 +1,118 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 24px 0;
+  gap: 96px;
+}
+
 .titleSection {
   display: flex;
   align-items: center;
   justify-content: space-between;
   text-align: center;
+  width: 100%;
+  gap: 48px;
+  min-width: 1000px;
+
+  h1 {
+    text-wrap: nowrap;
+  }
 }
 
-.twitchSection {
-  width: 100%;
-  height: 56vh;
+.heroSection {
   display: flex;
-  align-items: flex-start;
-  justify-content: left;
-  margin: 72px 0 120px 0;
-  gap: 48px;
+  flex-direction: column;
+  align-items: center;
+  height: 90vh;
+  width: 100%;
+  min-width: 1000px;
 
-
-  iframe {
-    border: 1px solid var(--border-color);
-    box-shadow: 0 0 20px 0 var(--shadow-color);
-    max-height: 99%;
-    width: 900px;
-    aspect-ratio: 16/9;
-  }
-
-  .headerContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    gap: 48px;
+  .twitchSection {
     width: 100%;
-    height: 99%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
 
-    .presentationCard {
-      border: 1px solid var(--border-color);
-      box-shadow: 0 0 20px 0 var(--shadow-color);
-      background-color: var(--background-color);
-      padding: 12px 24px;
-      width: 100%;
+    .headerContainer {
       display: flex;
       flex-direction: column;
-      position: relative;
-      margin-top: 60px;
+      align-items: center;
+      overflow: hidden;
+      height: 90%;
+      border: 1px solid var(--border-color);
+      border-right: none;
+      box-shadow: 0 0 20px 0 var(--shadow-color);
+      background-color: var(--background-color);
 
-      .presentationTitle {
-        position: absolute;
-        top: -61px;
-        left: -1px;
+      .headerTitle {
+        width: 100%;
         display: flex;
         align-items: center;
         justify-content: center;
-        border: 1px solid var(--border-color);
-        box-shadow: 0 0 20px 0 var(--shadow-color);
-        background-color: var(--background-color);
-        padding: 0 24px;
+        border-bottom: 1px solid var(--border-color);
+        text-align: center;
+
+        h2 {
+          font-size: 20px;
+        }
+
+        @media only screen and (min-resolution: 2dppx) {
+          h2 {
+            font-size: 14px;
+          }
+        }
+      }
+
+      .headerContent {
+        padding: 12px 24px;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+
+        p {
+          font-size: 14px;
+        }
+
+        @media only screen and (min-resolution: 2dppx) {
+          p {
+            font-size: 12px;
+          }
+        }
+      }
+
+      .countdown {
+        border-top: 1px solid var(--border-color);
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 96px;
+
+        p {
+          font-size: 20px;
+          font-weight: 800;
+          text-align: center;
+        }
+
+        @media only screen and (min-resolution: 2dppx) {
+          p {
+            font-size: 13px;
+          }
+        }
       }
     }
 
-    .countdown {
-      font-size: 32px;
-      font-weight: 800;
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      padding: 0 30px;
-      width: 100%;
-      height: 200px;
-      p {
-        white-space: nowrap;
-      }
+    iframe {
+      border: 1px solid var(--border-color);
+      box-shadow: 0 0 20px 0 var(--shadow-color);
+      aspect-ratio: 16/9;
+      width: 70%;
+      height: 90%;
     }
+
   }
 }
 
@@ -77,108 +120,141 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  gap: 24px;
-  margin: 48px 0 120px 0;
+  width: 100%;
 
-  .rankCard {
-    background-image: url("../assets/cardBG.svg");
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-    width: 1756px;
-    height: 200px;
-    padding: 0 48px 0 24px;
+  .rankContainer {
+    width: 100%;
+    height: 100%;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    position: relative;
+    margin-top: 48px;
 
-    .cardTitle {
-      position: absolute;
-      top: -31px;
-      left: 2px;
-      padding: 5px 10px;
-      height: 80px;
-      width: 230px;
-      background-image: url("../assets/titleCardBG.svg");
-      background-size: contain;
-      background-repeat: no-repeat;
-      background-position: center;
-      font-size: 14px;
+    .rankCard {
+      width: 100%;
+      height: 11vw;
+      min-width: 1000px;
+      min-height: 150px;
       display: flex;
-      align-items: center;
+      flex-direction: column;
       justify-content: center;
-    }
+      position: relative;
 
-    .rankTexts {
-      margin-left: 12px;
-      display: flex;
-      gap: 1em;
-      align-items: center;
-      font-size: 20px;
-      img {
+      .rankContent {
+        width: 100%;
         height: 100%;
-        user-select: none;
-      }
-    }
-
-    .matchHistorySection {
-      font-size: 20px;
-      display: flex;
-      gap: 20px;
-
-      .matchesHistory {
+        position: relative;
         display: flex;
         align-items: center;
-        justify-content: center;
-        gap: 5px;
+        justify-content: space-between;
+        padding: 0 24px;
 
-        .matchIndicator {
+        .rankBackgroundCardImage {
+          z-index: 100;
+          transform: translateY(-16px);
+        }
+
+        .rankTexts {
+          margin-left: 12px;
           display: flex;
-          height: 30px;
-          width: 10px;
+          gap: 1em;
+          align-items: center;
+          font-size: 20px;
+          position: relative;
+          z-index: 1000;
+
+          img {
+            position: relative !important;
+            height: 100%;
+            min-width: 50px;
+            min-height: 50px;
+          }
         }
 
-        .win {
-          background-color: #00A82D;
-        }
+        .matchHistorySection {
+          font-size: 20px;
+          display: flex;
+          gap: 20px;
+          z-index: 1000;
 
-        .loss {
-          background-color: #A90000;
+          .matchesHistory {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+
+            .matchIndicator {
+              display: flex;
+              height: 30px;
+              width: 10px;
+            }
+
+            .win {
+              background-color: #00A82D;
+            }
+
+            .loss {
+              background-color: #A90000;
+            }
+          }
+          p {
+            width: 100px;
+          }
         }
       }
-      p {
-        width: 100px;
+    }
+
+    @media only screen and (min-resolution: 2dppx) {
+      .rankCard {
+        height: 10vw;
+      }
+      .rankBackgroundCardImage {
+        transform: translateY(-10px) !important;
       }
     }
   }
 }
 
-.SNSection {
+.footerSection {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 48px;
-  margin: 48px 0 120px 0;
+  flex-direction: column;
+  width: 100%;
+  min-width: 1000px;
 
-  .SNCard {
-    background-image: url("../assets/socialNetworkBG.svg");
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
+  .SNSection {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 180px;
-    height: 90px;
-    gap: 5px;
-    text-decoration: none;
-    color: #fff;
+    gap: 48px;
+    margin: 48px 0 120px 0;
 
-    &:hover {
-      transform: scale(1.02);
+    .SNCard {
+      background-image: url("../assets/socialNetworkBG.svg");
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 180px;
+      height: 90px;
+      gap: 5px;
+      text-decoration: none;
+      color: #fff;
+
+      &:hover {
+        transform: scale(1.02);
+      }
+    }
+  }
+
+  @media screen and (max-width: 1000px) {
+    .SNSection {
+      flex-direction: column;
     }
   }
 }
+
 
 

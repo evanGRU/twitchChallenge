@@ -31,5 +31,6 @@ export const queueTypes = {
 
 export const twitchParents = {
     emeraldChallenge: "emeraldchallenge.vercel.app",
-    localhost: "localhost"
+    localhost: "localhost",
+    localNetwork: "192.168.0.48"
 }

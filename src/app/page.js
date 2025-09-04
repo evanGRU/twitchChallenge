@@ -1,7 +1,7 @@
 "use client";
 
 import {useEffect, useState} from "react";
-import {cardTitles, PUUID, twitchParents} from "@/tools/params";
+import {PUUID, twitchParents} from "@/tools/params";
 import {getFlexMatches, getLolRank, getSoloMatches, getTotalLP, getWinrate} from "@/tools/functions";
 import styles from './page.module.scss';
 import Image from "next/image";
@@ -49,86 +49,110 @@ export default function Home() {
     }, []);
 
     return (
-        <>
-            <div className={styles.titleSection}>
-                {/*eslint-disable-next-line*/}
-                <h1>///</h1>
-                <h1>EMERALD CHALLENGE</h1>
-                {/*eslint-disable-next-line*/}
-                <h1>///</h1>
-            </div>
+        <main className={styles.main}>
+            <div className={styles.heroSection}>
+                <div className={styles.titleSection}>
+                    {/*eslint-disable-next-line*/}
+                    <h1>///</h1>
+                    <h1>EMERALD CHALLENGE</h1>
+                    {/*eslint-disable-next-line*/}
+                    <h1>///</h1>
+                </div>
 
-            <div className={styles.twitchSection}>
-                <iframe
-                    src={`https://player.twitch.tv/?channel=akgamiiTV&parent=${twitchParents.emeraldChallenge}`}
-                    allowFullScreen={true}
-                />
-                <div className={styles.headerContainer}>
-                    <div className={styles.presentationCard}>
-                        <div className={styles.presentationTitle}>
+                <div className={styles.twitchSection}>
+
+                    <div className={styles.headerContainer}>
+                        <div className={styles.headerTitle}>
                             <h2>PRESENTATION DU CHALLENGE : </h2>
                         </div>
-                        <p>
-                            L&apos;objectif est simple :
-                            <br/>
-                            Je me donne 30 jours pour atteindre le rang émeraude sur les modes SOLO/DUO et FLEX sur LOL et RANKED sur TFT à partir d&apos;un fresh account.
-                        </p>
-                        <p>Est-ce que je vais réussir ?</p>
-                        <p>Je n&apos;ai pas le choix.</p>
-                        <p>Que le challenge commence.</p>
-                    </div>
+                        <div className={styles.headerContent}>
+                            <p>Je me donne 30 jours pour atteindre le rank émeraude sur les 3 modes classés de LOL et TFT.</p>
+                            <div className={styles.headerContentRanks}>
+                                <p>- SOLO/DUO (LOL)</p>
+                                <p>- FLEX (LOL)</p>
+                                <p>- RANKED (TFT)</p>
+                            </div>
 
-                    <div className={styles.countdown}>
-                        {timeLeft.expired ? (
-                            <p>FIN DU CHALLENGE...</p>
-                        ) : (
-                            <p>TEMPS RESTANTS : {timeLeft.days}j {timeLeft.hours}h {timeLeft.minutes}m {timeLeft.seconds}s</p>
-                        )}
+                            <p>Retrouve moi en live tous les jours sur twitch de 14h à 17h (mic on) puis de 21h à 00H (mic off).</p>
+                            <p>Que le challenge commence.</p>
+                        </div>
+
+                        <div className={styles.countdown}>
+                            {timeLeft.expired ? (
+                                <p>FIN DU CHALLENGE...</p>
+                            ) : (
+                                <p>TEMPS RESTANTS :
+                                    <br/><span>{timeLeft.days}j {timeLeft.hours}h {timeLeft.minutes}m {timeLeft.seconds}s</span></p>
+                            )}
+                        </div>
                     </div>
+                    <iframe
+                        src={`https://player.twitch.tv/?channel=akgamiiTV&parent=${twitchParents.emeraldChallenge}`}
+                        allowFullScreen={true}
+                    />
                 </div>
             </div>
 
-            <div className={styles.titleSection}>
-                <h1>.</h1>
-                <h1>MES RANKS</h1>
-                <h1>.</h1>
-            </div>
+
+
+
 
             <div className={styles.rankSection}>
-                {lolRankData &&
-                    lolRankData.map((data) => (
-                        <div key={data.queueType} className={styles.rankCard}>
-                            <div className={styles.cardTitle}>
-                                {cardTitles[data.queueType]}
-                            </div>
-                            <div className={styles.rankTexts}>
-                                <Image src={`/${data.tier}.png`} width={130} height={130} alt="emeraldIcon"/>
-                                <p>{data.tier} {data.rank}</p>
-                                <p>-</p>
-                                <p>{data.leaguePoints} LP</p>
-                                <p>-</p>
-                                <p>{getTotalLP(data.tier, data.rank, data.leaguePoints)}/2000 LP</p>
-                            </div>
+                <div className={styles.titleSection}>
+                    <h1>.</h1>
+                    <h1>MES RANKS</h1>
+                    <h1>.</h1>
+                </div>
 
-                            <div className={styles.matchHistorySection}>
-                                <div className={styles.matchesHistory}>
-                                    {(data.queueType === "RANKED_SOLO_5x5" ? soloMatches : flexMatches).map(match => {
-                                        const myData = match.info.participants.find(p => p.puuid === PUUID);
-                                        return (
-                                            <span
-                                                key={match.metadata.matchId}
-                                                className={`${styles.matchIndicator} ${myData.win ? styles.win : styles.loss}`}
+                <div className={styles.rankContainer}>
+                    {lolRankData &&
+                        lolRankData.map((data) => (
+                            <div key={data.queueType} className={styles.rankCard}>
+                                <div className={styles.rankContent}>
+                                    <Image
+                                        src={data.queueType === "RANKED_SOLO_5x5" ? "/SoloBGCard.svg" : "/FlexBGCard.svg"}
+                                        alt="Background card"
+                                        fill
+                                        className={styles.rankBackgroundCardImage}
+                                    />
+
+                                    <div className={styles.rankTexts}>
+                                        <div className={styles.rankIcon}>
+                                            <Image
+                                                src={`/${data.tier}.png`}
+                                                fill
+                                                alt="emeraldIcon"
                                             />
-                                        )
-                                    })}
+                                        </div>
+                                        <p>{data.tier} {data.rank}</p>
+                                        <p>-</p>
+                                        <p>{data.leaguePoints} LP</p>
+                                        <p>-</p>
+                                        <p>{getTotalLP(data.tier, data.rank, data.leaguePoints)}/2000 LP</p>
+                                    </div>
+
+
+                                    <div className={styles.matchHistorySection}>
+                                        <div className={styles.matchesHistory}>
+                                            {(data.queueType === "RANKED_SOLO_5x5" ? soloMatches : flexMatches).map(match => {
+                                                const myData = match.info.participants.find(p => p.puuid === PUUID);
+                                                return (
+                                                    <span
+                                                        key={match.metadata.matchId}
+                                                        className={`${styles.matchIndicator} ${myData.win ? styles.win : styles.loss}`}
+                                                    />
+                                                )
+                                            })}
+
+                                        </div>
+                                        <p>{getWinrate(data.wins, data.losses)}%</p>
+                                    </div>
 
                                 </div>
-                                <p>{getWinrate(data.wins, data.losses)}%</p>
                             </div>
-
-                        </div>
-                    ))
-                }
+                        ))
+                    }
+                </div>
 
                 {/*<div key={TFTRankData.queueType} className="rank-card">*/}
                 {/*    <div className="card-title">*/}
@@ -154,33 +178,35 @@ export default function Home() {
                 {/*</div>*/}
             </div>
 
-            <div className={styles.titleSection}>
-                <h1>.</h1>
-                <h1>RETROUVE MOI SUR LES RESEAUX</h1>
-                <h1>.</h1>
-            </div>
+            <div className={styles.footerSection}>
+                <div className={styles.titleSection}>
+                    <h1>.</h1>
+                    <h1>RETROUVE MOI SUR LES RESEAUX</h1>
+                    <h1>.</h1>
+                </div>
 
-            <div className={styles.SNSection}>
-                <a href="https://www.tiktok.com/@akgamii" className={styles.SNCard} target="_blank" rel="noreferrer">
-                    <Image src="/tiktokLogo.png" width={30} height={30} alt="Logo Tiktok"/>
-                    <p>TIKTOK</p>
-                </a>
-                <a href="https://x.com/akgamiii" className={styles.SNCard} target="_blank" rel="noreferrer">
-                    <Image src="/xLogo.png" width={30} height={30} alt="Logo X"/>
-                    <p>X</p>
-                </a>
-                <a href="https://www.twitch.tv/akgamiitv" className={styles.SNCard} target="_blank" rel="noreferrer">
-                    <Image src="/twitchLogo.png" width={30} height={30} alt="Logo Twitch"/>
-                    <p>TWITCH</p>
-                </a>
-            </div>
+                <div className={styles.SNSection}>
+                    <a href="https://www.tiktok.com/@akgamii" className={styles.SNCard} target="_blank" rel="noreferrer">
+                        <Image src="/tiktokLogo.png" width={30} height={30} alt="Logo Tiktok"/>
+                        <p>TIKTOK</p>
+                    </a>
+                    <a href="https://x.com/akgamiii" className={styles.SNCard} target="_blank" rel="noreferrer">
+                        <Image src="/xLogo.png" width={30} height={30} alt="Logo X"/>
+                        <p>X</p>
+                    </a>
+                    <a href="https://www.twitch.tv/akgamiitv" className={styles.SNCard} target="_blank" rel="noreferrer">
+                        <Image src="/twitchLogo.png" width={30} height={30} alt="Logo Twitch"/>
+                        <p>TWITCH</p>
+                    </a>
+                </div>
 
-            <div className={styles.titleSection}>
-                {/*eslint-disable-next-line*/}
-                <h1>///</h1>
-                {/*eslint-disable-next-line*/}
-                <h1>///</h1>
+                <div className={styles.titleSection}>
+                    {/*eslint-disable-next-line*/}
+                    <h1>///</h1>
+                    {/*eslint-disable-next-line*/}
+                    <h1>///</h1>
+                </div>
             </div>
-        </>
+        </main>
     );
 }
