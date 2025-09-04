@@ -112,8 +112,8 @@
       aspect-ratio: 16/9;
       width: 70%;
       height: 90%;
+      user-select: none;
     }
-
   }
 }
 
@@ -153,6 +153,7 @@
         .rankBackgroundCardImage {
           z-index: 100;
           transform: translateY(-16px);
+          user-select: none;
         }
 
         .rankTexts {
@@ -169,6 +170,7 @@
             height: 100%;
             min-width: 50px;
             min-height: 50px;
+            user-select: none;
           }
         }
 
@@ -245,6 +247,10 @@
       text-decoration: none;
       color: #fff;
 
+      img {
+        user-select: none;
+      }
+
       &:hover {
         transform: scale(1.02);
       }
@@ -258,5 +264,9 @@
   }
 }
 
+
+.copyrightText {
+  opacity: 0.4;
+}
 
 

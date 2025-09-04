@@ -96,7 +96,7 @@ export default function Home() {
 
                     <div className={styles.headerContainer}>
                         <div className={styles.headerTitle}>
-                            <h2>PRESENTATION DU CHALLENGE : </h2>
+                            <h2>PRÉSENTATION DU CHALLENGE : </h2>
                         </div>
                         <div className={styles.headerContent}>
                             <p>Je me donne 30 jours pour atteindre le rank émeraude sur les 3 modes classés de LOL et TFT.</p>
@@ -255,7 +255,7 @@ export default function Home() {
             <div className={styles.footerSection}>
                 <div className={styles.titleSection}>
                     <h1>.</h1>
-                    <h1>RETROUVE MOI SUR LES RESEAUX</h1>
+                    <h1>RETROUVE MOI SUR LES RÉSEAUX</h1>
                     <h1>.</h1>
                 </div>
 
@@ -277,6 +277,7 @@ export default function Home() {
                 <div className={styles.titleSection}>
                     {/*eslint-disable-next-line*/}
                     <h1>///</h1>
+                    <p className={styles.copyrightText}>©Evan GRUCHOT</p>
                     {/*eslint-disable-next-line*/}
                     <h1>///</h1>
                 </div>
