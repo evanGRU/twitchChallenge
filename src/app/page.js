@@ -12,9 +12,42 @@ export default function Home() {
     const [soloMatches, setSoloMatches] = useState([]);
     const [flexMatches, setFlexMatches] = useState([]);
     const [timeLeft, setTimeLeft] = useState({});
+    const [areDataLoaded, setAreDataLoaded] = useState(false);
 
     useEffect(() => {
-        getLolRank().then(data => setLolRankData(data));
+        getLolRank().then(data => {
+            const soloDuoData = data.find(rankedData => rankedData.queueType === "RANKED_SOLO_5x5");
+            const flexData = data.find(rankedData => rankedData.queueType === "RANKED_FLEX_SR");
+
+            if (soloDuoData) {
+                setLolRankData(prev => ({
+                    ...prev,
+                    soloDuo: soloDuoData
+                }));
+            } else {
+                setLolRankData(prev => ({
+                    ...prev,
+                    soloDuo: {
+                        isUnranked: true
+                    }
+                }));
+            }
+
+            if (flexData) {
+                setLolRankData(prev => ({
+                    ...prev,
+                    soloDuo: flexData
+                }));
+            } else {
+                setLolRankData(prev => ({
+                    ...prev,
+                    flex: {
+                        isUnranked: true
+                    }
+                }));
+            }
+            setAreDataLoaded(true);
+        });
         getSoloMatches().then(data => setSoloMatches(data));
         getFlexMatches().then(data => setFlexMatches(data));
     }, [])
@@ -48,7 +81,7 @@ export default function Home() {
         return () => clearInterval(timer);
     }, []);
 
-    return (
+    return areDataLoaded && (
         <main className={styles.main}>
             <div className={styles.heroSection}>
                 <div className={styles.titleSection}>
@@ -68,9 +101,9 @@ export default function Home() {
                         <div className={styles.headerContent}>
                             <p>Je me donne 30 jours pour atteindre le rank émeraude sur les 3 modes classés de LOL et TFT.</p>
                             <div className={styles.headerContentRanks}>
-                                <p>- SOLO/DUO (LOL)</p>
-                                <p>- FLEX (LOL)</p>
-                                <p>- RANKED (TFT)</p>
+                                <p>- SOLO/DUO (LOL) •• PEAK EMERAUDE 3</p>
+                                <p>- FLEX (LOL) •• PEAK PLAT 2</p>
+                                <p>- RANKED (TFT) •• PEAK EMERAUDE 2</p>
                             </div>
 
                             <p>Retrouve moi en live tous les jours sur twitch de 14h à 17h (mic on) puis de 21h à 00H (mic off).</p>
@@ -81,8 +114,11 @@ export default function Home() {
                             {timeLeft.expired ? (
                                 <p>FIN DU CHALLENGE...</p>
                             ) : (
-                                <p>TEMPS RESTANTS :
-                                    <br/><span>{timeLeft.days}j {timeLeft.hours}h {timeLeft.minutes}m {timeLeft.seconds}s</span></p>
+                                <p>
+                                    TEMPS RESTANTS :
+                                    <br/>
+                                    {timeLeft.days}j {timeLeft.hours}h {timeLeft.minutes}m {timeLeft.seconds}s
+                                </p>
                             )}
                         </div>
                     </div>
@@ -93,10 +129,6 @@ export default function Home() {
                 </div>
             </div>
 
-
-
-
-
             <div className={styles.rankSection}>
                 <div className={styles.titleSection}>
                     <h1>.</h1>
@@ -105,53 +137,95 @@ export default function Home() {
                 </div>
 
                 <div className={styles.rankContainer}>
-                    {lolRankData &&
-                        lolRankData.map((data) => (
-                            <div key={data.queueType} className={styles.rankCard}>
-                                <div className={styles.rankContent}>
+                    <div key={lolRankData.flex.queueType} className={styles.rankCard}>
+                        <div className={styles.rankContent}>
+                            <Image
+                                src="/SoloBGCard.svg"
+                                alt="Background card"
+                                fill
+                                className={styles.rankBackgroundCardImage}
+                            />
+
+                            <div className={styles.rankTexts}>
+                                <div className={styles.rankIcon}>
                                     <Image
-                                        src={data.queueType === "RANKED_SOLO_5x5" ? "/SoloBGCard.svg" : "/FlexBGCard.svg"}
-                                        alt="Background card"
+                                        src={lolRankData.soloDuo.isUnranked ? '/UNRANKED.png' : `/${lolRankData.soloDuo.tier}.png`}
                                         fill
-                                        className={styles.rankBackgroundCardImage}
+                                        alt="rankIcon"
                                     />
-
-                                    <div className={styles.rankTexts}>
-                                        <div className={styles.rankIcon}>
-                                            <Image
-                                                src={`/${data.tier}.png`}
-                                                fill
-                                                alt="emeraldIcon"
-                                            />
-                                        </div>
-                                        <p>{data.tier} {data.rank}</p>
-                                        <p>-</p>
-                                        <p>{data.leaguePoints} LP</p>
-                                        <p>-</p>
-                                        <p>{getTotalLP(data.tier, data.rank, data.leaguePoints)}/2000 LP</p>
-                                    </div>
-
-
-                                    <div className={styles.matchHistorySection}>
-                                        <div className={styles.matchesHistory}>
-                                            {(data.queueType === "RANKED_SOLO_5x5" ? soloMatches : flexMatches).map(match => {
-                                                const myData = match.info.participants.find(p => p.puuid === PUUID);
-                                                return (
-                                                    <span
-                                                        key={match.metadata.matchId}
-                                                        className={`${styles.matchIndicator} ${myData.win ? styles.win : styles.loss}`}
-                                                    />
-                                                )
-                                            })}
-
-                                        </div>
-                                        <p>{getWinrate(data.wins, data.losses)}%</p>
-                                    </div>
-
                                 </div>
+                                <p>{lolRankData.soloDuo.isUnranked ? 'UNRANKED' : (lolRankData.soloDuo.tier + ' ' + lolRankData.soloDuo.rank)}</p>
+                                <p>-</p>
+                                <p>{lolRankData.soloDuo.isUnranked ? 0 : lolRankData.soloDuo.leaguePoints} LP</p>
+                                <p>-</p>
+                                <p>{lolRankData.soloDuo.isUnranked ? 0 : getTotalLP(lolRankData.soloDuo.tier, lolRankData.soloDuo.rank, lolRankData.soloDuo.leaguePoints)}/2000 LP</p>
                             </div>
-                        ))
-                    }
+
+
+                            <div className={styles.matchHistorySection}>
+                                {!lolRankData.soloDuo.isUnranked && (
+                                    <div className={styles.matchesHistory}>
+                                        {soloMatches.map(match => {
+                                            const myData = match.info.participants.find(p => p.puuid === PUUID);
+                                            return (
+                                                <span
+                                                    key={match.metadata.matchId}
+                                                    className={`${styles.matchIndicator} ${myData.win ? styles.win : styles.loss}`}
+                                                />
+                                            )
+                                        })}
+
+                                    </div>
+                                )}
+                                <p>{lolRankData.soloDuo.isUnranked ? 0 : getWinrate(lolRankData.soloDuo.wins, lolRankData.soloDuo.losses)}%</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div key={lolRankData.flex.queueType} className={styles.rankCard}>
+                        <div className={styles.rankContent}>
+                            <Image
+                                src="/FlexBGCard.svg"
+                                alt="Background card"
+                                fill
+                                className={styles.rankBackgroundCardImage}
+                            />
+
+                            <div className={styles.rankTexts}>
+                                <div className={styles.rankIcon}>
+                                    <Image
+                                        src={lolRankData.flex.isUnranked ? '/UNRANKED.png' : `/${lolRankData.flex.tier}.png`}
+                                        fill
+                                        alt="rankIcon"
+                                    />
+                                </div>
+                                <p>{lolRankData.flex.isUnranked ? 'UNRANKED' : (lolRankData.flex.tier + lolRankData.flex.rank )}</p>
+                                <p>-</p>
+                                <p>{lolRankData.flex.isUnranked ? 0 : lolRankData.flex.leaguePoints} LP</p>
+                                <p>-</p>
+                                <p>{lolRankData.flex.isUnranked ? 0 : getTotalLP(lolRankData.flex.tier, lolRankData.flex.rank, lolRankData.flex.leaguePoints)}/2000 LP</p>
+                            </div>
+
+
+                            <div className={styles.matchHistorySection}>
+                                {!lolRankData.flex.isUnranked && (
+                                    <div className={styles.matchesHistory}>
+                                        {flexMatches.map(match => {
+                                            const myData = match.info.participants.find(p => p.puuid === PUUID);
+                                            return (
+                                                <span
+                                                    key={match.metadata.matchId}
+                                                    className={`${styles.matchIndicator} ${myData.win ? styles.win : styles.loss}`}
+                                                />
+                                            )
+                                        })}
+
+                                    </div>
+                                )}
+                                <p>{lolRankData.flex.isUnranked ? 0 : getWinrate(lolRankData.flex.wins, lolRankData.flex.losses)}%</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 {/*<div key={TFTRankData.queueType} className="rank-card">*/}

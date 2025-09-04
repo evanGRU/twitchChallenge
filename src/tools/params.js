@@ -1,11 +1,7 @@
-export const PUUID = "bW0yqyC4qFK0dSglziCOe8jAHDYRqlbJaDHxQrEaoh1S9WNRhJh6lgQQNvD25VTSNXEBTO9tUszf6w";
-
-export const cardTitles = {
-    RANKED_SOLO_5x5: "LOL - SOLO/DUO",
-    RANKED_FLEX_SR: "LOL - FLEX",
-}
+export const PUUID = "pJ3nxvjApqmlt7gsHsYijTW8_wCmU_-rYmhIQrc0QHC_F73h1VIAuPyo0T1QfJj4kc8fs9CqvywkEg";
 
 export const baseLP = {
+    UNRANKED: 0,
     IRON: 0,
     BRONZE: 400,
     SILVER: 800,
@@ -15,6 +11,7 @@ export const baseLP = {
 };
 
 export const divisionOffset = {
+    UNRANKED: 0,
     IV: 0,
     III: 100,
     II: 200,
