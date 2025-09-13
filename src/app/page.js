@@ -76,7 +76,7 @@ export default function Home() {
     }, []);
 
 
-    const hasStarted = true;
+    const hasStarted = false;
 
 
     return areDataLoaded && (
