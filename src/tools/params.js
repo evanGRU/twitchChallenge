@@ -1,4 +1,9 @@
-export const PUUID = "pJ3nxvjApqmlt7gsHsYijTW8_wCmU_-rYmhIQrc0QHC_F73h1VIAuPyo0T1QfJj4kc8fs9CqvywkEg";
+const puuidObject = {
+    mainAccount: "bW0yqyC4qFK0dSglziCOe8jAHDYRqlbJaDHxQrEaoh1S9WNRhJh6lgQQNvD25VTSNXEBTO9tUszf6w",
+    rushAccount: "pJ3nxvjApqmlt7gsHsYijTW8_wCmU_-rYmhIQrc0QHC_F73h1VIAuPyo0T1QfJj4kc8fs9CqvywkEg"
+}
+
+export const PUUID = puuidObject.rushAccount;
 
 export const baseLP = {
     UNRANKED: 0,

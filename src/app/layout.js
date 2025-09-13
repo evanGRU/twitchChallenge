@@ -1,7 +1,8 @@
 import "./globals.scss";
 
 export const metadata = {
-  title: "Emerald Challenge",
+    title: "Emerald Challenge"
+
 };
 
 export default function RootLayout({ children }) {
