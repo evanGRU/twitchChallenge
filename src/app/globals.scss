@@ -4,13 +4,14 @@
   --main-color: #1F2828;
   --secondary-color: #238289;
   --footer-color: #1A2222;
+  --selection-color: #9CB6B8;
 
   --text-light: #FFFFFF;
   --text-dark: #1F2828;
 }
 
 ::selection{
-  background: var(--secondary-color);
+  background: var(--selection-color);
 }
 
 * {

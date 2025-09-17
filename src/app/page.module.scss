@@ -187,6 +187,11 @@
   position: absolute;
 }
 
+.background {
+  visibility: hidden;
+  position: absolute;
+}
+
 
 
 
@@ -232,38 +237,53 @@
       }
     }
 
-    .iconContainer {
-      padding: 0 25px 0 20px !important;
+    .rankCard {
+      animation: rankSlide 800ms ;
 
-      .rankIcon {
-        width: 20px !important;
+      .iconContainer {
+        padding: 0 25px 0 20px !important;
+
+        .rankIcon {
+          width: 20px !important;
+        }
+      }
+
+      .contentContainer {
+        position: relative;
+        flex-direction: row !important;
+        justify-content: space-between;
+
+        .contentTotal {
+          background-color: var(--main-color);
+          color: var(--text-light);
+
+          position: absolute;
+          top: 0;
+          right: 0;
+
+          width: 150px;
+          height: 100%;
+
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          padding: 10px 5px 10px 10px;
+        }
       }
     }
+  }
 
-    .contentContainer {
-      position: relative;
-      flex-direction: row !important;
-      justify-content: space-between;
-
-
-      .contentTotal {
-        background-color: var(--main-color);
-        color: var(--text-light);
-
-        position: absolute;
-        top: 0;
-        right: 0;
-
-        width: 150px;
-        height: 100%;
-
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        padding: 10px 5px 10px 10px;
-      }
+  @keyframes rankSlide {
+    from {
+      transform: translateX(40px);
+      opacity: 0;
     }
+    to {
+      transform: translateX(0px);
+      opacity: 1;
+    }
+
   }
 
   .timeContainer {
@@ -286,6 +306,7 @@
       transform: translateY(-0px);
       padding: 0;
       margin: 0;
+      text-wrap: nowrap;
 
       p {
         color: var(--text-dark);
@@ -340,19 +361,24 @@
     .ekkoImage {
       position: absolute;
       z-index: 100;
-      left: 120px;
+      left: 150px;
 
       img {
         position: absolute;
         height: 100vh;
       }
     }
+  }
 
-    .background {
-      left: -100px
-    }
+  .background {
+    visibility: visible;
+    z-index: -100;
   }
 }
+
+
+
+
 
 @media only screen and (min-resolution: 2dppx) {
   .header {
@@ -406,10 +432,6 @@
 
     .ekkoImage {
       left: -100px;
-    }
-
-    .background {
-      left: 10px
     }
   }
 }

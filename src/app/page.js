@@ -48,7 +48,7 @@ export default function Home() {
 
 
     useEffect(() => {
-        const targetDate = "2025-09-30T23:59:59";
+        const targetDate = "2025-10-23T12:00:00";
         const targetTime = new Date(targetDate).getTime();
 
         const updateCountdown = () => {
@@ -76,11 +76,18 @@ export default function Home() {
     }, []);
 
 
-    const hasStarted = false;
+    const challengeHasStarted = () => {
+        const startDate = new Date("2025-09-23T12:00:00");
+        const currentDate = new Date();
+
+        return currentDate >= startDate;
+    };
 
 
     return areDataLoaded && (
         <main className={styles.main}>
+            <img src="/BlueBackground.svg" alt="Background" className={styles.background}/>
+
             <div className={styles.content}>
 
                 <div className={styles.header}>
@@ -158,11 +165,11 @@ export default function Home() {
 
                 <div className={styles.timeContainer}>
                     <div className={styles.timeTitle}>
-                        <h1>{hasStarted ? 'Temps restant' : 'Début du challenge | 15/09 à 21h'}</h1>
+                        <h1>{challengeHasStarted() ? 'Temps restant' : 'Début du challenge | 23/09 à 12h00'}</h1>
                     </div>
 
-                    <div className={styles.timer}>
-                        { hasStarted ? (
+                    <div className={styles.timer} id={"animatedText"}>
+                        { challengeHasStarted() ? (
                             <>
                                 <p>
                                     {timeLeft.days}
@@ -222,7 +229,6 @@ export default function Home() {
 
             <div className={styles.leftPictures}>
                 <div className={styles.ekkoImage}>
-                    <img src="/BlueBackground.svg" alt="Background" className={styles.background}/>
                     <img src="/EkkoShadow.png" alt="Ekko Shadow"/>
                     <img src="/EkkoDesign.png" alt="Ekko Design"/>
 
