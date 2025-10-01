@@ -77,7 +77,7 @@ export default function Home() {
 
 
     const challengeHasStarted = () => {
-        const startDate = new Date("2025-09-23T12:00:00");
+        const startDate = new Date("2025-10-02T13:00:00");
         const currentDate = new Date();
 
         return currentDate >= startDate;
@@ -123,28 +123,6 @@ export default function Home() {
                     <div className={styles.rankCard}>
                         <div className={styles.iconContainer}>
                             <img
-                                src="/LolFlexIcon.svg"
-                                alt="Lol Flex Icon"
-                                className={styles.rankIcon}
-                            />
-                        </div>
-
-                        <div className={styles.contentContainer}>
-                            <div className={styles.contentRank}>
-                                <p>{lolRankData.flex.isUnranked ? 'UNRANKED' : (lolRankData.flex.tier + ' ' + lolRankData.flex.rank)}</p>
-                                <p>{lolRankData.flex.isUnranked ? '' : '-'}</p>
-                                <p className={styles.textBlue}>{lolRankData.flex.isUnranked ? '' : lolRankData.flex.leaguePoints + ' LP'}</p>
-                            </div>
-
-                            <p className={styles.contentTotal}>
-                                {lolRankData.flex.isUnranked ? '---' : getTotalLP(lolRankData.flex.tier, lolRankData.flex.rank, lolRankData.flex.leaguePoints) + ' / 2000 LP'}
-                            </p>
-                        </div>
-                    </div>
-
-                    <div className={styles.rankCard}>
-                        <div className={styles.iconContainer}>
-                            <img
                                 src="/TftIcon.svg"
                                 alt="Tft Rank Icon"
                                 className={styles.rankIcon}
@@ -160,12 +138,43 @@ export default function Home() {
                             <p className={styles.contentTotal}>---</p>
                         </div>
                     </div>
+
+                    <div className={styles.rankCard}>
+                        <div className={styles.iconContainer}>
+                            {/*<img*/}
+                            {/*    src="/LolFlexIcon.svg"*/}
+                            {/*    alt="Lol Flex Icon"*/}
+                            {/*    className={styles.rankIcon}*/}
+                            {/*/>*/}
+                            <h1>?</h1>
+                        </div>
+
+                        <div className={styles.contentContainer}>
+                            {/*<div className={styles.contentRank}>*/}
+                            {/*    <p>{lolRankData.flex.isUnranked ? 'UNRANKED' : (lolRankData.flex.tier + ' ' + lolRankData.flex.rank)}</p>*/}
+                            {/*    <p>{lolRankData.flex.isUnranked ? '' : '-'}</p>*/}
+                            {/*    <p className={styles.textBlue}>{lolRankData.flex.isUnranked ? '' : lolRankData.flex.leaguePoints + ' LP'}</p>*/}
+                            {/*</div>*/}
+
+                            {/*<p className={styles.contentTotal}>*/}
+                            {/*    {lolRankData.flex.isUnranked ? '---' : getTotalLP(lolRankData.flex.tier, lolRankData.flex.rank, lolRankData.flex.leaguePoints) + ' / 2000 LP'}*/}
+                            {/*</p>*/}
+
+                            <div className={styles.contentRank}>
+                                ???
+                            </div>
+
+                            <p className={styles.contentTotal}>
+                                ???
+                            </p>
+                        </div>
+                    </div>
                 </div>
 
 
                 <div className={styles.timeContainer}>
                     <div className={styles.timeTitle}>
-                        <h1>{challengeHasStarted() ? 'Temps restant' : 'Début du challenge | 23/09 à 12h00'}</h1>
+                        <h1>{challengeHasStarted() ? 'Temps restant' : 'Début du challenge | 02/10 à 13h00'}</h1>
                     </div>
 
                     <div className={styles.timer} id={"animatedText"}>
