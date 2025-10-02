@@ -48,7 +48,7 @@ export default function Home() {
 
 
     useEffect(() => {
-        const targetDate = "2025-10-23T12:00:00";
+        const targetDate = "2025-10-22T00:00:00";
         const targetTime = new Date(targetDate).getTime();
 
         const updateCountdown = () => {
@@ -131,11 +131,14 @@ export default function Home() {
 
                         <div className={styles.contentContainer}>
                             <div className={styles.contentRank}>
-                                <p>UNRANKED</p>
-
+                                <p>SILVER II</p>
+                                <p>-</p>
+                                <p className={styles.textBlue}>86 LP</p>
                             </div>
 
-                            <p className={styles.contentTotal}>---</p>
+                            <p className={styles.contentTotal}>
+                                {getTotalLP('SILVER', 'II', 86) + ' / 2000 LP'}
+                            </p>
                         </div>
                     </div>
 
