@@ -131,13 +131,13 @@ export default function Home() {
 
                         <div className={styles.contentContainer}>
                             <div className={styles.contentRank}>
-                                <p>GOLD III</p>
+                                <p>GOLD II</p>
                                 <p>-</p>
-                                <p className={styles.textBlue}>6 LP</p>
+                                <p className={styles.textBlue}>57 LP</p>
                             </div>
 
                             <p className={styles.contentTotal}>
-                                {getTotalLP('GOLD', 'III', 6) + ' / 2000 LP'}
+                                {getTotalLP('GOLD', 'II', 57) + ' / 2000 LP'}
                             </p>
                         </div>
                     </div>
