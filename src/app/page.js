@@ -134,13 +134,13 @@ export default function Home() {
 
                         <div className={styles.contentContainer}>
                             <div className={styles.contentRank}>
-                                <p>PLATINUM III</p>
+                                <p>PLATINUM II</p>
                                 <p>-</p>
-                                <p className={styles.textBlue}>78 LP</p>
+                                <p className={styles.textBlue}>0 LP</p>
                             </div>
 
                             <p className={styles.contentTotal}>
-                                {getTotalLP('PLATINUM', 'III', 78) >= 2000 ? 'completed' : getTotalLP('PLATINUM', 'III', 78) + ' / 2000 LP'}
+                                {getTotalLP('PLATINUM', 'II', 0) >= 2000 ? 'completed' : getTotalLP('PLATINUM', 'II', 0) + ' / 2000 LP'}
                             </p>
                         </div>
                     </div>
