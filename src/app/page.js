@@ -134,13 +134,14 @@ export default function Home() {
 
                         <div className={styles.contentContainer}>
                             <div className={styles.contentRank}>
-                                <p>PLATINUM II</p>
+                                <p>PLATINUM I</p>
                                 <p>-</p>
-                                <p className={styles.textBlue}>90 LP</p>
+                                <p className={styles.textBlue}>02 LP</p>
                             </div>
 
                             <p className={styles.contentTotal}>
-                                {getTotalLP('PLATINUM', 'II', 90) >= 2000 ? 'completed' : getTotalLP('PLATINUM', 'II', 90) + ' / 2000 LP'}
+                                {/*{getTotalLP('PLATINUM', 'I', 2) >= 2000 ? 'completed' : getTotalLP('PLATINUM', 'I', 2) + ' / 2000 LP'}*/}
+                                failed
                             </p>
                         </div>
                     </div>
@@ -184,29 +185,30 @@ export default function Home() {
                     </div>
 
                     <div className={styles.timer} id={"animatedText"}>
-                        { challengeHasStarted() ? (
-                            <>
-                                <p>
-                                    {timeLeft.days}
-                                    <span className={styles.timeLetter}>j</span>
-                                </p>
+                        {/*{ challengeHasStarted() ? (*/}
+                        {/*    <>*/}
+                        {/*        <p>*/}
+                        {/*            {timeLeft.days}*/}
+                        {/*            <span className={styles.timeLetter}>j</span>*/}
+                        {/*        </p>*/}
 
-                                <p>
-                                    {timeLeft.hours}
-                                    <span className={styles.timeLetter}>h</span>
-                                </p>
+                        {/*        <p>*/}
+                        {/*            {timeLeft.hours}*/}
+                        {/*            <span className={styles.timeLetter}>h</span>*/}
+                        {/*        </p>*/}
 
-                                <p>
-                                    {timeLeft.minutes}
-                                    <span className={styles.timeLetter}>m</span>
-                                </p>
+                        {/*        <p>*/}
+                        {/*            {timeLeft.minutes}*/}
+                        {/*            <span className={styles.timeLetter}>m</span>*/}
+                        {/*        </p>*/}
 
-                                <p>
-                                    {timeLeft.seconds}
-                                    <span className={styles.timeLetter}>s</span>
-                                </p>
-                            </>
-                        ) : (<p>STARTING SOON</p>)}
+                        {/*        <p>*/}
+                        {/*            {timeLeft.seconds}*/}
+                        {/*            <span className={styles.timeLetter}>s</span>*/}
+                        {/*        </p>*/}
+                        {/*    </>*/}
+                        {/*) : (<p>STARTING SOON</p>)}*/}
+                        <p>CHALLENGE ENDED</p>
                     </div>
                 </div>
 
